@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 import argparse
+import ConfigParser
 import datetime
 import json
 import os
 import re
 import requests
 import urllib2
-import ConfigParser
 
 
 RATE_DATA_URL = "http://rate.bot.com.tw/Pages/Static/UIP003.zh-TW.htm"
@@ -105,7 +105,10 @@ def send_to_slack(data_dict, SLACK_WEBHOOK_URL):
             'username': 'slack-rate-bot',
         }
 
-    response = requests.post(SLACK_WEBHOOK_URL, data=json.dumps(payload))
+    response = requests.post(
+        SLACK_WEBHOOK_URL,
+        data=json.dumps(payload)
+    )
 
 
 def config_reader(config_file_path):
